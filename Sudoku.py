@@ -23,24 +23,6 @@ def check(y, x, o):
                 return False
     return True
 
-#def presolve():
-#    global solvedSudoku
-#    global win
-#    for col in range (9):
-#        for row in range(9):
-#            if L[col][row] == 0:
-#                for num in range(1,10):
-#                    if check (col,row,num):
-#                        L[col][row] = num
-#                        drawGame(win)
-#                        pygame.time.delay(40)
-#                        presolve()
-#                        L[col][row] = 0
-#                return
-#    for y in range (9):
-#        for x in range(9):
-#            solvedSudoku[y][x] = L[y][x]
-
 def solve(window):
     for col in range(9):
         for row in range(9):
@@ -103,7 +85,6 @@ def drawNumbers(window):
                 window.blit(surface, (row*BOX_WIDTH + ((BOX_WIDTH - surface.get_width())//2), col*BOX_HEIGHT + ((BOX_HEIGHT - surface.get_height())//2)))
 
 def lockGrid():
-    #presolve()
     for col in range(9):
         for row in range(9):
             if L[col][row] != 0:
@@ -127,27 +108,12 @@ def drawSolved(window):
     for col in range(9):
         for row in range(9):
             if (solved[col][row] and not lock[col][row]):
-                pygame.draw.rect(window, GREEN, (row*BOX_WIDTH, col*BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT))
-
-#def checkValid(y, x):
-#    for n in range(1,10):
-#        if (L[y][x] != n):
-#            if (not check(y, x, n)):
-#                return False
-#    return True
-        
-#def drawValid(window):
-#    for col in range(9):
-#        for row in range(9):
-#            if (not valid[col][row]):
-#                pygame.draw.rect(window, RED, (row*BOX_WIDTH, col*BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT))
-                
+                pygame.draw.rect(window, GREEN, (row*BOX_WIDTH, col*BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT))                
     
 def drawGame(window):
     win.fill(WHITE)
     drawLocked(window)
     drawSolved(window)
-#    drawValid(window)
     drawGrid(window)
     drawNumbers(window)
     drawSelection(window, selected)
@@ -174,12 +140,6 @@ while run:
             if (event.unicode in NUMBERS):
                 if(selected != [-1, -1] and lock[selected[1]][selected[0]] == False):
                     L[selected[1]][selected[0]] = int(event.unicode)
-                    #if (locked):
-                        #if (L[selected[1]][selected[0]] != solvedSudoku[selected[1]][selected[0]]):
-                            #valid[selected[1]][selected[0]] = False
-                        #else:
-                            #valid[selected[1]][selected[0]] = True
-                        #drawGame(win)
                     
             elif (event.unicode == ""):
                 selected = [-1, -1]
@@ -194,7 +154,6 @@ while run:
                 L = [ [0 for i in range(9)] for j in range(9)]
                 lock = [ [False for i in range (9)] for j in range (9)]
                 solved = [ [False for i in range (9)] for j in range (9)]
-                #valid = [ [True for i in range (0,9)] for j in range (0,9)]
                 solvedSudoku = [ [0 for i in range (9)] for j in range (9)]
                 drawGame(win)
                 
