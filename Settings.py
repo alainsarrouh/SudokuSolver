@@ -13,10 +13,8 @@ L = [ [6,0,5,4,7,0,0,1,3],
 
 
 #Lists
-#L = [ [0 for i in range(9)] for j in range(9)]
 lock = [ [False for i in range (9)] for j in range (9)]
 solved = [ [False for i in range (9)] for j in range (9)]
-#valid = [ [True for i in range (0,9)] for j in range (0,9)]
 solvedSudoku = [ [0 for i in range (9)] for j in range (9)]
 NUMBERS = [str(x) for x in range(0,10)]
 
